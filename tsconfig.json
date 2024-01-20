@@ -6,16 +6,28 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "target": "ES2021",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@app/modules": ["src/modules"],
+      "@app/modules/*": ["src/modules/*"],
+      "@app/libs": ["src/libs"],
+      "@app/libs/*": ["src/libs/*"],
+      "@app/config": ["src/config"],
+      "@app/config/*": ["src/config/*"],
+      "@app/constants": ["src/constants"],
+      "@app/dto/*": ["src/dto/*"],
+      "@app/common": ["src/common"],
+      "@app/common/*": ["src/common/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true
   }
 }
