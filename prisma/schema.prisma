@@ -6,24 +6,31 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email     String   
   name      String?
   password  String
-  posts     Todo[]
+  todos     Todo[]
+  
+  @@unique([email])
+  @@index([email])
 }
 
 model Todo {
-  id        Int      @id @default(autoincrement())
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title     String
   content   String
-  published Boolean  @default(false)
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  Int?
+  created   DateTime      @default(now())
+  updated   DateTime      @updatedAt
+  published Boolean       @default(false)
+  owner_id      String    @db.Uuid
+  owner         User      @relation(fields: [owner_id], references: [id])
+
+  @@index([owner_id])
 }
