@@ -7,8 +7,9 @@ import { SentryModule } from '@ntegral/nestjs-sentry';
 
 import { PrismaModule } from './prisma';
 import { TodoModule } from './todo';
-
+import { UsersModule } from './users';
 import packageJson from '../../package.json';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -26,6 +27,7 @@ import packageJson from '../../package.json';
     }),
     PrismaModule,
     TodoModule,
+    UsersModule,
   ],
 })
 export default class ApplicationModule {}
